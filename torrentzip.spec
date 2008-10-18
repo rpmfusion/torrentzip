@@ -1,10 +1,7 @@
-# $Id: torrentzip.spec,v 1.1 2008/10/18 14:05:14 thl Exp $
-# Authority: matthias
-
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.2
-Release: 2.fc7
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip
@@ -52,7 +49,7 @@ systems.
 
 
 %changelog
-* Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 0.2-2.fc7
+* Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 0.2-2
 - rebuild for RPM Fusion
 
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.2-1
