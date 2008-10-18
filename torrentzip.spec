@@ -1,3 +1,5 @@
+%define _default_patch_fuzz 2
+
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.2
@@ -51,6 +53,7 @@ systems.
 %changelog
 * Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 0.2-2
 - rebuild for RPM Fusion
+- define _default_patch_fuzz 2
 
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.2-1
 - Initial RPM release.
