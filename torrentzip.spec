@@ -3,8 +3,8 @@
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.2
-Release: 4%{?dist}
-License: GPL
+Release: 5%{?dist}
+License: GPLv2+
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip
 Source: http://dl.sf.net/trrntzip/trrntzip_v02_src.tar.gz
@@ -32,16 +32,16 @@ systems.
 # No configure, we need to generate it from configure.in
 ./autogen.sh
 %configure
-%{__make} %{?_smp_mflags}
+make %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+rm -rf %{buildroot}
+make install DESTDIR=%{buildroot}
 
 
 %clean
-%{__rm} -rf %{buildroot}
+rm -rf %{buildroot}
 
 
 %files
@@ -51,6 +51,10 @@ systems.
 
 
 %changelog
+* Wed Apr  4 2012 Matthias Saou <matthias@saou.eu> 0.2-5
+- Minor spec file cleanups.
+- Update license field.
+
 * Wed Feb 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
@@ -61,6 +65,6 @@ systems.
 - rebuild for RPM Fusion
 - define _default_patch_fuzz 2
 
-* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.2-1
+* Tue Jan  9 2007 Matthias Saou <matthias@saou.eu> 0.2-1
 - Initial RPM release.
 
