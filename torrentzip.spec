@@ -1,14 +1,15 @@
+# We patch the same files multiple times, so we have slight differences
 %define _default_patch_fuzz 2
 
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.2
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip
 Source: http://dl.sf.net/trrntzip/trrntzip_v02_src.tar.gz
-Patch0: patch-src-trrntzip.c
+Patch0: trrntzip-0.2-chmod.patch
 Patch1: trrntzip-0.2-warningfixes.patch
 Patch2: trrntzip-0.2-help.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -22,7 +23,7 @@ systems.
 
 
 %prep
-%setup -n trrntzip
+%setup -q -n trrntzip
 %patch0 -p0 -b .chmod
 %patch1 -p1 -b .warningfixes
 %patch2 -p1 -b .help
@@ -45,15 +46,16 @@ rm -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-, root, root, -)
 %doc AUTHORS COPYING README
 %{_bindir}/trrntzip
 
 
 %changelog
-* Wed Apr  4 2012 Matthias Saou <matthias@saou.eu> 0.2-5
+* Wed Apr  4 2012 Matthias Saou <matthias@saou.eu> 0.2-6
 - Minor spec file cleanups.
 - Update license field.
+- Rename patch0 to be more explicit.
 
 * Wed Feb 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
