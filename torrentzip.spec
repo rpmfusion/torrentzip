@@ -4,7 +4,7 @@
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip
@@ -52,6 +52,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun Mar 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 0.2-7
+- Mass rebuilt for Fedora 19 Features
+
 * Wed Apr  4 2012 Matthias Saou <matthias@saou.eu> 0.2-6
 - Minor spec file cleanups.
 - Update license field.
