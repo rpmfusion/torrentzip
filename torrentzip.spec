@@ -3,18 +3,19 @@
 
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
-Version: 0.2
-Release: 14%{?dist}
+Version: 0.9
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip
-Source: http://dl.sf.net/trrntzip/trrntzip_v02_src.tar.gz
-Patch0: trrntzip-0.2-chmod.patch
+Source: https://sourceforge.net/code-snapshots/svn/t/tr/trrntzip/code/trrntzip-code-r9.zip
+Patch0: torrentzip-0.9-format-secure.patch
 Patch1: trrntzip-0.2-warningfixes.patch
 Patch2: trrntzip-0.2-help.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
-BuildRequires: autoconf, automake, libtool
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: libtool
 
 %description
 TorrentZip is a replacement for MameZip. The goal of the program is to use
@@ -23,35 +24,32 @@ systems.
 
 
 %prep
-%setup -q -n trrntzip
-%patch0 -p0 -b .chmod
-%patch1 -p1 -b .warningfixes
-%patch2 -p1 -b .help
+%setup -q -n trrntzip-code-r9
+%patch0 -p1 -b .format_secure
+#patch1 -p1 -b .warningfixes
+#patch2 -p1 -b .help
 
 
 %build
 # No configure, we need to generate it from configure.in
-./autogen.sh
+sh ./autogen.sh
 %configure
-make %{?_smp_mflags}
+%make_build
 
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
-
-
-%clean
-rm -rf %{buildroot}
+%make_install
 
 
 %files
-%defattr(-, root, root, -)
 %doc AUTHORS COPYING README
 %{_bindir}/trrntzip
 
 
 %changelog
+* Sat Mar 16 2019 Sérgio Basto <sergio@serjux.com> - 0.9-1
+- Torrentzip 0.9 from git source
+
 * Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.2-14
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 

@@ -1,0 +1,21 @@
+diff -rup torrentzip-0.9/src/logging.c trrntzip-code-r9/src/logging.c
+--- torrentzip-0.9/src/logging.c	2012-02-02 14:23:45.000000000 +0000
++++ trrntzip-code-r9/src/logging.c	2019-03-16 05:31:07.129757496 +0000
+@@ -67,7 +67,7 @@ logprint (FILE * stdf, FILE * f, char *f
+   // Print to stdout or stderr
+   if (stdf)
+   {
+-    fprintf (stdf, szMessageBuffer);
++    fprintf (stdf, "%s", szMessageBuffer);
+     fflush(stdf);
+   }
+ 
+@@ -113,7 +113,7 @@ logprint3 (FILE * stdf, FILE * f1, FILE
+   // Print to stdout or stderr
+   if (stdf)
+   {
+-    fprintf (stdf, szMessageBuffer);
++    fprintf (stdf, "%s", szMessageBuffer);
+   }
+ 
+   // Print to logfile 1
