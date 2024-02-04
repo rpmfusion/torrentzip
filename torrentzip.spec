@@ -4,7 +4,7 @@
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.9
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPLv2+
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip
@@ -47,6 +47,9 @@ sh ./autogen.sh
 
 
 %changelog
+* Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.9-10
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
 * Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.9-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 
