@@ -1,52 +1,41 @@
-# We patch the same files multiple times, so we have slight differences
-%define _default_patch_fuzz 2
-
 Summary: Create identical zip files over multiple systems
-Name: torrentzip
-Version: 0.9
-Release: 10%{?dist}
+Name:    torrentzip
+Version: 1.2
+Release: 1%{?dist}
 License: GPLv2+
-Group: Applications/File
-URL: http://sourceforge.net/projects/trrntzip
-Source: https://sourceforge.net/code-snapshots/svn/t/tr/trrntzip/code/trrntzip-code-r9.zip
-Patch0: torrentzip-0.9-format-secure.patch
-Patch1: trrntzip-0.2-warningfixes.patch
-Patch2: trrntzip-0.2-help.patch
+URL:     https://github.com/0-wiz-0/trrntzip
+Source:  %url/archive/v%{version}/trrntzip-%{version}.tar.gz
+
+BuildRequires: cmake
+BuildRequires: gcc
+BuildRequires: ninja-build
 BuildRequires: zlib-devel
-BuildRequires: autoconf
-BuildRequires: automake
-BuildRequires: libtool
 
 %description
 TorrentZip is a replacement for MameZip. The goal of the program is to use
 standard values when creating zips to create identical files over multiple
 systems.
 
-
 %prep
-%setup -q -n trrntzip-code-r9
-%patch0 -p1 -b .format_secure
-#patch1 -p1 -b .warningfixes
-#patch2 -p1 -b .help
-
+%setup -q -n trrntzip-%{version}
 
 %build
-# No configure, we need to generate it from configure.in
-sh ./autogen.sh
-%configure
-%make_build
-
+%cmake -GNinja
+%cmake_build
 
 %install
-%make_install
-
+%cmake_install
 
 %files
-%doc AUTHORS COPYING README
+%doc AUTHORS NEWS.md README.md
+%license COPYING GPL2.txt
 %{_bindir}/trrntzip
 
 
 %changelog
+* Sun Feb 25 2024 Leigh Scott <leigh123linux@gmail.com> - 1.2-1
+- Update to 1.2
+
 * Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.9-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
