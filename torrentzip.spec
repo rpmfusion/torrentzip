@@ -1,14 +1,16 @@
 Summary: Create identical zip files over multiple systems
 Name:    torrentzip
-Version: 1.2
-Release: 5%{?dist}
+Version: 1.3
+Release: 1%{?dist}
 License: GPLv2+
 URL:     https://github.com/0-wiz-0/trrntzip
 Source:  %url/archive/v%{version}/trrntzip-%{version}.tar.gz
+Patch0:  freeze-deflate-to-zlib-1.2.2-for-torrentzip-compliance.patch
 
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: ninja-build
+BuildRequires: python3-nihtest
 BuildRequires: zlib-devel
 
 %description
@@ -17,7 +19,7 @@ standard values when creating zips to create identical files over multiple
 systems.
 
 %prep
-%setup -q -n trrntzip-%{version}
+%autosetup -p1 -n trrntzip-%{version}
 
 %build
 %cmake -GNinja
@@ -26,6 +28,10 @@ systems.
 %install
 %cmake_install
 
+%check
+ctest --test-dir %{_vpath_builddir} --output-on-failure
+
+
 %files
 %doc AUTHORS NEWS.md README.md
 %license COPYING GPL2.txt
@@ -33,6 +39,11 @@ systems.
 
 
 %changelog
+* Sat Jul 11 2026 Leigh Scott <leigh123linux@gmail.com> - 1.3-1
+- Update to Update to 1.3
+- Enable tests
+- Freeze deflate to zlib-1.2.2 for torrentzip compliance
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.2-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
