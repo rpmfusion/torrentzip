@@ -1,7 +1,7 @@
 Summary: Create identical zip files over multiple systems
 Name:    torrentzip
 Version: 1.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 URL:     https://github.com/0-wiz-0/trrntzip
 Source:  %url/archive/v%{version}/trrntzip-%{version}.tar.gz
@@ -39,6 +39,9 @@ ctest --test-dir %{_vpath_builddir} --output-on-failure
 
 
 %changelog
+* Sun Aug 02 2026 RPM Fusion Release Engineering <leigh123linux@rpmfusion.org> - 1.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
+
 * Sat Jul 11 2026 Leigh Scott <leigh123linux@gmail.com> - 1.3-1
 - Update to Update to 1.3
 - Enable tests
